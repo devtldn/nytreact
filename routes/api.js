@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Article = require('../models/article');
 
-router.post("/api/articles", function(req, res) {
+router.post("/api/article", function(req, res) {
     Article.create(req.body).then((doc) => {
         res.json(doc);
     }).catch(err => {
@@ -9,13 +9,13 @@ router.post("/api/articles", function(req, res) {
     });
 });
 
-router.get('/api/articles', function(req, res) {
+router.get('/api/article', function(req, res) {
     Article.find(req.body).then((docs) => {
         res.json(docs);
     });
 });
 
-router.get('/api/articles/:id', function(req, res) {
+router.get('/api/article/:id', function(req, res) {
     Article.findOne({
         url: req.params.id
     }).then(docs => {
@@ -23,7 +23,7 @@ router.get('/api/articles/:id', function(req, res) {
     });
 });
 
-router.delete('/api/articles/:id', function(req, res) {
+router.delete('/api/article/:id', function(req, res) {
     Article.deleteOne({
         url: req.params.id
     }).then(docs => {

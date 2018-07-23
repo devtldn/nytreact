@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => (
+const Navbar = () => (
     <ul className="nav justify-content-center">
         <li className="nav-item">
             <Link
@@ -26,4 +26,4 @@ const Header = () => (
     </ul>
 );
 
-export default Header;
+export default Navbar;
