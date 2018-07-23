@@ -34,9 +34,10 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="text-center">
                 <div className="row">
-                    <div className="col-sm-12">
+                    <div className="col-sm-2"></div>
+                    <div className="col-sm-8">
                         <br />
                         <form className="form" onSubmit={this.searchArticle}>
                             <input
@@ -52,10 +53,12 @@ class Home extends React.Component {
                         </form>
                         <br />
                     </div>
+                    <div className="col-sm-2"></div>
                 </div>
                 <br />
                 <div className="row">
-                    <div className="col-sm-12">
+                    <div className="col-sm-1"></div>
+                    <div className="col-sm-10">
                         {
                             this.state.articles.map(item => {
                                 console.log("ITEM ", item);
@@ -77,6 +80,7 @@ class Home extends React.Component {
                             })
                         }
                     </div>
+                    <div className="col-sm-1"></div>
                 </div>
             </div>
         );
