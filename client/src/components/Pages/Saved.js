@@ -14,7 +14,7 @@ class Saved extends React.Component {
         axios.get('/api/article').then(response => {
             this.setState({
                 saved: response.data
-            }, () => console.log("SHOWSAVED ", this.state.saved));
+            }, () => console.log("showSaved ", this.state.saved));
         });
     }
 
