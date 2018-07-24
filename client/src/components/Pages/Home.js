@@ -6,10 +6,15 @@ class Home extends React.Component {
         articles: [],
         saved: {
             title: "",
+            snippet: "",
             date: "",
             url: ""
         }
     };
+
+    componentDidMount() {
+
+    }
 
     handleInputChange = (event) => {
         this.setState({
@@ -42,6 +47,7 @@ class Home extends React.Component {
         this.setState({
             saved: {
                 title: filterOne.headline.main,
+                snippet: filterOne.snippet,
                 date: filterOne.pub_date,
                 url: filterOne.web_url
             }
@@ -54,8 +60,6 @@ class Home extends React.Component {
                 throw (err);
             });
         });
-
-        
     };
 
     render() {
@@ -90,10 +94,12 @@ class Home extends React.Component {
                                 // console.log("ITEM ", item);
                                 return (
                                     <div key={item._id}>
+                                        <br />
                                         <div className="card">
                                             <h4 className="card-header">{item.headline.main}</h4>
                                             <div className="card-body">
                                                 <p className="card-text">"{item.snippet}"</p>
+                                                <p className="card-text"><strong>Published date: </strong>{item.pub_date}</p>
                                                 <a href={item.web_url} target="_blank">Read here</a>
                                             </div>
                                             <button className="btn btn-info" onClick={() => this.saveArticle(item._id)}>Save article</button>
@@ -104,7 +110,7 @@ class Home extends React.Component {
                             })
                         }
                     </div>
-                    <div className="col-sm-1"></div>
+                    <div className="col-sm-2"></div>
                 </div>
             </div>
         );
