@@ -12,10 +12,6 @@ class Home extends React.Component {
         }
     };
 
-    componentDidMount() {
-
-    }
-
     handleInputChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
