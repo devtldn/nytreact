@@ -50,7 +50,7 @@ class Home extends React.Component {
         }, () => {
             axios.post('/api/article', this.state.saved).then(response => {
                 if (response) {
-                    console.log("SUCCESS! ", response);
+                    window.location.href = '/saved';
                 }
             }).catch(err => {
                 throw (err);
@@ -87,7 +87,7 @@ class Home extends React.Component {
                     <div className="col-sm-10">
                         {
                             this.state.articles.map(item => {
-                                // console.log("ITEM ", item);
+                                console.log("ITEM ", item);
                                 return (
                                     <div key={item._id}>
                                         <br />

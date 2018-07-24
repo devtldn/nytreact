@@ -17,7 +17,7 @@ router.get('/api/article', function(req, res) {
 
 router.get('/api/article/:id', function(req, res) {
     Article.findOne({
-        url: req.params.id
+        _id: req.params.id
     }).then(docs => {
         res.json(docs);
     });
@@ -25,7 +25,7 @@ router.get('/api/article/:id', function(req, res) {
 
 router.delete('/api/article/:id', function(req, res) {
     Article.deleteOne({
-        url: req.params.id
+        _id: req.params.id
     }).then(docs => {
         res.json(docs);
     }).catch(err => {

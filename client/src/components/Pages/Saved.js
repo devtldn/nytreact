@@ -14,12 +14,16 @@ class Saved extends React.Component {
         axios.get('/api/article').then(response => {
             this.setState({
                 saved: response.data
-            }, () => console.log("showSaved ", this.state.saved));
+            });
         });
     }
 
-    deleteArticle = () => {
-
+    deleteArticle = id => {
+        axios.delete(`/api/article/${id}`).then(response => {
+            if (response) {
+                window.location.href = '/saved';
+            }
+        });
     }
 
     render() {
