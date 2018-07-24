@@ -3,7 +3,12 @@ import axios from "axios";
 
 class Home extends React.Component {
     state = {
-        articles: []
+        articles: [],
+        saved: {
+            title: "",
+            date: "",
+            url: ""
+        }
     };
 
     handleInputChange = (event) => {
@@ -28,9 +33,30 @@ class Home extends React.Component {
         });
     };
 
-    searchResults = (event) => {
+    saveArticle = id => {
+        let filteredArticle = this.state.articles.filter(article => article._id === id);
+        let filterOne = filteredArticle[0];
+
+        console.log(filterOne);
+
+        this.setState({
+            saved: {
+                title: filterOne.headline.main,
+                date: filterOne.pub_date,
+                url: filterOne.web_url
+            }
+        }, () => {
+            axios.post('/api/article', this.state.saved).then(response => {
+                if (response) {
+                    console.log("SUCCESS! ", response);
+                }
+            }).catch(err => {
+                throw (err);
+            });
+        });
+
         
-    }
+    };
 
     render() {
         return (
@@ -61,18 +87,16 @@ class Home extends React.Component {
                     <div className="col-sm-10">
                         {
                             this.state.articles.map(item => {
-                                console.log("ITEM ", item);
+                                // console.log("ITEM ", item);
                                 return (
                                     <div key={item._id}>
                                         <div className="card">
+                                            <h4 className="card-header">{item.headline.main}</h4>
                                             <div className="card-body">
-                                                <h4 className="card-title">{item.headline.main}</h4>
-                                                <br />
-                                                <h5 className="card-text">"{item.snippet}"</h5>
-                                                <br />
+                                                <p className="card-text">"{item.snippet}"</p>
                                                 <a href={item.web_url} target="_blank">Read here</a>
                                             </div>
-                                            <button className="btn btn-info">Save article</button>
+                                            <button className="btn btn-info" onClick={() => this.saveArticle(item._id)}>Save article</button>
                                         </div>
                                         <br />
                                     </div>
